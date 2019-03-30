@@ -1,8 +1,8 @@
 #include "IRremote.h"
 #include<Servo.h>
-// najlev pin minus , sredishan +, najdesan ide na 11 zaradi citanje na podatoci !!! 
+// najlev pin minus , sredishan +, najdesan ide na 11 zaradi citanje na podatoci !!! relay info
 //servo 8 pin mu e output od arduino, zuta boja, crna e minus GND, crvena e plus 5V
-int receiver = 11; // Signal Pin of IR receiver to Arduino Digital Pin 11
+int receiver = 11; // Signal Pin of IR receiver to Arduino Digital Pin 11, remote codes info
 long oldValue;
 /*-----( Declare objects )-----*/
 IRrecv irrecv(receiver);     // create instance of 'irrecv'
@@ -11,7 +11,7 @@ Servo servo;
 
 
 int motor1=12;
-int led=13;
+int led=4;
 int sensorPin=7;
 
 void setup()   /*----( SETUP: RUNS ONCE )----*/
@@ -42,15 +42,16 @@ void loop()   /*----( LOOP: RUNS CONSTANTLY )----*/
   else{
     digitalWrite(motor1,HIGH);
   }
-
+ // digitalWrite(led,HIGH);
   int val=digitalRead(sensorPin);
     if(val==1){
     digitalWrite(led,LOW); 
+    Serial.println(val);
     }
     else{
     digitalWrite(led,HIGH);
     }
-  
+  val=0;
 }/* --(end main loop )-- */
 
 /*-----( Function )-----*/
